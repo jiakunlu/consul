@@ -243,7 +243,7 @@ func catalogServiceListByKind(tx *txn, kind structs.ServiceKind, _ *structs.Ente
 	return tx.Get("services", "kind", string(kind))
 }
 
-func catalogServiceListByNode(tx *txn, node string, _ *structs.EnterpriseMeta, _ bool) (memdb.ResultIterator, error) {
+func catalogServiceListByNode(tx ReadTxn, node string, _ *structs.EnterpriseMeta, _ bool) (memdb.ResultIterator, error) {
 	return tx.Get("services", "node", node)
 }
 
@@ -281,7 +281,7 @@ func catalogChecksMaxIndex(tx *txn, _ *structs.EnterpriseMeta) uint64 {
 	return maxIndexTxn(tx, "checks")
 }
 
-func catalogListChecksByNode(tx *txn, node string, _ *structs.EnterpriseMeta) (memdb.ResultIterator, error) {
+func catalogListChecksByNode(tx ReadTxn, node string, _ *structs.EnterpriseMeta) (memdb.ResultIterator, error) {
 	return tx.Get("checks", "node", node)
 }
 

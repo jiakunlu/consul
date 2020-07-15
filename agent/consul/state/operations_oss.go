@@ -30,7 +30,7 @@ func getWithTxn(tx *txn,
 	return tx.Get(table, index, idxVal)
 }
 
-func getCompoundWithTxn(tx *txn, table, index string,
+func getCompoundWithTxn(tx ReadTxn, table, index string,
 	_ *structs.EnterpriseMeta, idxVals ...interface{}) (memdb.ResultIterator, error) {
 
 	return tx.Get(table, index, idxVals...)
